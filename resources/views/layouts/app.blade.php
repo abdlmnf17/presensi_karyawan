@@ -24,6 +24,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style>
+
+body {
+            padding-top: 56px; /* Adjust this value according to your navbar height */
+        }
+
+        .navbar {
+            transition: top 0.3s; /* Add smooth transition effect */
+        }
+
+        .navbar.sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for a visual effect */
+            background-color: #fff; /* Optional: Customize background color */
+            z-index: 1000; /* Optional: Ensure it's above other elements */
+        }
   #sidebar {
             min-width: 225px;
             max-width: 225px;
@@ -42,11 +59,11 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <i class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Aplikasi Absensi ') }}
-                </a>
+                </i>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon">
 
@@ -99,7 +116,7 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
-               
+
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
@@ -144,8 +161,6 @@
                 @endguest
             </ul>
 
-
-
                 </div>
             </div>
         </nav>
@@ -153,6 +168,12 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="bg-dark text-white text-center py-3">
+            <div class="container">
+                <p>&copy; 2023 Aplikasi Presensi. All rights reserved.</p>
+            </div>
+        </footer>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -160,6 +181,14 @@
     <script>
 $('.alert').alert()
     </script>
+
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable();
+    });
+</script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
 </body>
 </html>

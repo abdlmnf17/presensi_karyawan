@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KaryawanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/karyawan', KaryawanController::class);
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    // Rute-rute yang hanya bisa diakses oleh admin
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    // Tambahkan rute-rute lain yang hanya bisa diakses oleh admin di sini
+});
