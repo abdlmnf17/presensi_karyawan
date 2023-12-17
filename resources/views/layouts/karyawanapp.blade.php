@@ -79,15 +79,13 @@ body {
             {{-- Centre Navbar --}}
 
             <ul class="navbar-nav mx-auto">
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="karyawanDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">badge</i> Karyawan
                     </a>
                     <div class="dropdown-menu" aria-labelledby="karyawanDropdown">
-                        <a class="dropdown-item" href="/karyawan">Data Karyawan</a>
-                        <a class="dropdown-item" href="#">Lembur Karyawan</a>
-                        <a class="dropdown-item" href="/presensi">Kehadiran</a>
-                        <a class="dropdown-item" href="/presensi">Lemburan</a>
+                        <a class="dropdown-item" href="/profile">Data Karyawan</a>
                     </div>
                 </li>
 
@@ -107,11 +105,8 @@ body {
                     </a>
                     <div class="dropdown-menu" aria-labelledby="cutiDropdown">
                         <a class="dropdown-item" href="/cuti">Cuti Karyawan</a>
-                        <a class="dropdown-item" href="#">Cuti HRD</a>
-                        {{-- <a class="dropdown-item" href="#">Submenu 3</a> --}}
                     </div>
                 </li>
-
 
             </ul>
 
@@ -167,7 +162,25 @@ body {
         </nav>
 
         <main class="py-4">
-            @yield('content')
+
+
+
+            <!-- resources/views/layouts/karyawanapp.blade.php -->
+
+<!-- resources/views/layouts/karyawanapp.blade.php -->
+
+{{-- @if (Auth::check())
+    @if (Auth::user()->hasRole('admin'))
+        @include('layouts.admin-navigation') <!-- Include admin navigation jika role-nya admin -->
+    @else
+        @include('layouts.karyawan-navigation') <!-- Include karyawan navigation jika role-nya karyawan -->
+
+    @endif
+@endif --}}
+
+@yield('content')
+
+
         </main>
         <footer class="bg-dark text-white text-center py-3">
             <div class="container">

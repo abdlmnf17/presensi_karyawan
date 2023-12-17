@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Presensi;
+use App\Models\Konfigurasi;
+
 
 class HomeController extends Controller
 {
@@ -22,13 +25,24 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        if (auth()->user()->role === 'admin') {
-            return view('admin.dashboard');
-        } elseif (auth()->user()->role === 'karyawan') {
-            return view('karyawan.dashboard');
-        }
+{
+    $konfigurasi = Konfigurasi::first(); // Gunakan first() alih-alih all()
 
-        return view('home');
+    if (auth()->user()->role === 'admin') {
+        return view('admin.dashboard');
+    } elseif (auth()->user()->role === 'karyawan') {
+        return view('karyawan.dashboard', compact('konfigurasi'));
     }
+
+    return view('home', compact('konfigurasi'));
+}
+
+
+    // public function konfig()
+    // {
+    //     $konfigurasi = Konfigurasi::all();
+    //     return view('home', compact('konfigurasi'));
+    // }
+
+
 }

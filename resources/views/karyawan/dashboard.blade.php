@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.karyawanapp')
 
 @section('content')
 <div class="container">
@@ -8,12 +8,15 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    @if (session('success'))
+                       <div class="alert alert-success">
+                             {{ session('success') }}
+                        </div>
+                    @elseif (session('error'))
+                        <div class="alert alert-danger">
+                         {{ session('error') }}
                         </div>
                     @endif
-
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>  {{ __('Selamat Datang ')}}, {{ Auth::user()->name }}.</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -22,7 +25,37 @@
                     </div>
 
                     <div class="container mt-4">
+
+                        <br/>
+                    <div class="container mt-4">
+                        <div class="container mt-4 text-center">
+                            {!! QrCode::size(100)->generate('https://localhost:8080/karyawan/presensi/form'); !!}
+                        </div>
+                        <br/>
                         <div class="d-flex justify-content-around flex-wrap">
+
+
+                        <a href="/karyawan/presensi/form" class="card text-white bg-primary mb-3" style="max-width: 18rem; text-decoration: none; color: inherit;">
+                            <div class="card-header">ABSEN KARYAWAN</div>
+                            <div class="card-body">
+                                <i class="material-icons"><span class="material-symbols-outlined">group</span></i>
+                                <p class="card-text">Absen masuk dan pulang (08.00 - 17.00)</p>
+                            </div>
+                        </a>
+
+                        {{-- <a href="/karyawan/presensi/riwayat" class="card text-white bg-primary mb-3" style="max-width: 18rem; text-decoration: none; color: inherit;">
+                            <div class="card-header">Riwayat Presensi</div>
+                            <div class="card-body">
+                                <i class="material-icons"><span class="material-symbols-outlined">group</span></i>
+                                <p class="card-text">Lihat riwayat presensi</p>
+                            </div>
+                        </a> --}}
+                        </div>
+
+
+
+
+                        {{-- <div class="d-flex justify-content-around flex-wrap">
                             <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                                 <div class="card-header">Data Karyawan</div>
                                 <div class="card-body">
@@ -70,7 +103,7 @@
 
 
 
-                        </div>
+                        </div> --}}
                     </div>
 
 

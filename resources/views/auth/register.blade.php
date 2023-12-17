@@ -67,8 +67,7 @@
                             <div class="col-md-6">
                                 <select id="role" class="form-control" name="role" required>
                                     <option value="karyawan">Karyawan</option>
-                                    <option value="admin">Admin</option>
-                                    <!-- Tambahkan opsi role lain jika diperlukan -->
+                                
                                 </select>
 
                                 @error('role')

@@ -20,17 +20,12 @@
                     </div>
                 @endif
 
-
-
-
-
                     <div class="d-flex left-content-start">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createKaryawanModal">
                             Tambah Karyawan
                         </button>
                     </div>
                     <br/>
-
 
 
                     <table class="table">
@@ -53,7 +48,7 @@
                                     <td>{{ $karyawan->klasifikasi }}</td>
                                     <td>{{ $karyawan->jabatan }}</td>
                                     <td>
-                                        <a href="{{ route('karyawan.show', $karyawan->id) }}" class="btn btn-danger">Detail</a>
+                                        <a href="{{ route('admin.karyawan.show', $karyawan->id) }}" class="btn btn-danger">Detail</a>
                                     </td>
                                 </tr>
                             @empty
@@ -72,14 +67,37 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- Your create form here -->
-                                    <form method="POST" action="{{ route('karyawan.store') }}">
+                                    <form method="POST" action="{{ route('admin.karyawan.store') }}">
                                         @csrf
+
+                                        <div class="mb-3">
+                                            <label for="user_id" class="form-label">User</label>
+                                            <select class="form-select" id="user_id" name="user_id" required>
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->id }} - {{ $user->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
 
                                         <div class="mb-3">
                                             <label for="no_badge" class="form-label">No Badge</label>
                                             <input type="number" class="form-control" id="no_badge" name="no_badge" required>
                                         </div>
+
+                                        <div class="mb-3">
+                                            <label for="no_id" class="form-label">No ID</label>
+                                            <input type="number" class="form-control" id="no_id" name="no_id" required>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="no_kk" class="form-label">NIK KK/KTP</label>
+                                            <input type="number" class="form-control" id="no_kk" name="no_kk" required>
+                                        </div>
+
+
+
+
+
 
                                         <div class="mb-3">
                                             <label for="nama" class="form-label">Nama</label>
@@ -96,6 +114,13 @@
                                             <select class="form-select" id="jenis_kelamin" name="jenis_kelamin" required>
                                                 <option value="Laki-laki">Laki-laki</option>
                                                 <option value="Perempuan">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="status" class="form-label">Status Karyawan</label>
+                                            <select class="form-select" id="status" name="status" required>
+                                                <option value="Insidentil">Insidentil</option>
+                                                <option value="Rutin">Rutin</option>
                                             </select>
                                         </div>
 

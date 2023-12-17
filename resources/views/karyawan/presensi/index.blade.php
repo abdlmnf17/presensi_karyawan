@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.karyawanapp')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -7,25 +8,48 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    @if (session('success'))
+                       <div class="alert alert-success">
+                             {{ session('success') }}
+                        </div>
+                    @elseif (session('error'))
+                        <div class="alert alert-danger">
+                         {{ session('error') }}
                         </div>
                     @endif
-
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>  {{ __('Selamat Datang ')}}, {{ Auth::user()->name }} ({{ Auth::user()->role }})</strong>
+                        <strong>  {{ __('Selamat Datang ')}}, {{ Auth::user()->name }}.</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <div class="container mt-4">
-                        <div class="d-flex justify-content-around flex-wrap">
+                        <div class="container mt-4">
+                         @if (!empty($konfigurasi) && $konfigurasi->status_presensi === 'buka')
+                        <a href="{{ route('karyawan.presensi.form') }}" class="btn btn-primary">Buka Presensi</a>
+                        @else
+                            <p class="btn btn-danger">Presensi ditutup oleh admin.</p>
+                        @endif
+                        </div>
+
+                        <a href="/karyawan/presensi/riwayat" class="card text-white bg-primary mb-3" style="max-width: 18rem; text-decoration: none; color: inherit;">
+                            <div class="card-header">Riwayat Presensi</div>
+                            <div class="card-body">
+                                <i class="material-icons"><span class="material-symbols-outlined">group</span></i>
+                                <p class="card-text">Lihat riwayat presensi</p>
+                            </div>
+                        </a>
+
+
+
+                        {{-- <div class="d-flex justify-content-around flex-wrap">
                             <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                                 <div class="card-header">Data Karyawan</div>
                                 <div class="card-body">
                                     <i class="material-icons"><span class="material-symbols-outlined">group</span></i>
                                 </a>
+
                                 <p class="card-text">Kelola data karyawan, lihat, buat, hapus, dan edit.</p>
 
                                 </div>
@@ -67,7 +91,7 @@
 
 
 
-                        </div>
+                        </div> --}}
                     </div>
 
 

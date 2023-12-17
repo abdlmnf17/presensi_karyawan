@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -14,11 +15,12 @@
                     @endif
 
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>  {{ __('Selamat Datang ')}}, {{ Auth::user()->name }} ({{ Auth::user()->role }})</strong>
+                        <strong>  {{ __('Selamat Datang ')}}, {{ Auth::user()->name }}.</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <div class="container mt-4">
                         <div class="d-flex justify-content-around flex-wrap">
                             <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
@@ -26,6 +28,7 @@
                                 <div class="card-body">
                                     <i class="material-icons"><span class="material-symbols-outlined">group</span></i>
                                 </a>
+
                                 <p class="card-text">Kelola data karyawan, lihat, buat, hapus, dan edit.</p>
 
                                 </div>

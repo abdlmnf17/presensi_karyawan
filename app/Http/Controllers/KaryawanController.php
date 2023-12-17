@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Karyawan;
+use App\Models\Presensi;
+use App\Models\User;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class KaryawanController extends Controller
 {
@@ -16,18 +19,24 @@ class KaryawanController extends Controller
     public function index()
     {
         $karyawans = Karyawan::all();
-        return view('karyawan.index', compact('karyawans'));
+        $users = User::all();
+        return view('admin.karyawan.index', compact('karyawans', 'users'));
     }
 
     public function create()
     {
-        return view('karyawan.create');
+        $users = User::all();
+        return view('admin.karyawan.create', compact('users'));
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'nama' => 'required',
+            'user_id' => 'required',
+            'no_id' => 'required',
+            'no_kk' => 'required',
+            'status' => 'required',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required',
             'agama' => 'required',
@@ -36,23 +45,26 @@ class KaryawanController extends Controller
             'telepon' => 'required',
             'no_badge' => 'required',
             'gaji_pokok' => 'required|numeric',
+
         ]);
 
         Karyawan::create($validatedData);
-
-        return redirect()->route('karyawan.index')->with('success', 'Data karyawan telah ditambahkan.');
+        return redirect()->route('admin.karyawan.index')->with('success', 'Data karyawan telah ditambahkan.');
     }
 
     public function show($id)
+
     {
         $karyawan = Karyawan::findOrFail($id);
-        return view('karyawan.show', compact('karyawan'));
+        $users = User::all();
+        return view('admin.karyawan.show', compact('karyawan', 'users'));
     }
 
     public function edit($id)
     {
         $karyawan = Karyawan::findOrFail($id);
-        return view('karyawan.edit', compact('karyawan'));
+        $users = User::all();
+        return view('admin.karyawan.edit', compact('karyawan', 'users'));
     }
 
     public function update(Request $request, $id)
@@ -62,24 +74,36 @@ class KaryawanController extends Controller
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required',
             'agama' => 'required',
+            'no_id' => 'required',
+            'no_kk' => 'required',
+            'status' => 'required',
             'klasifikasi' => 'required',
             'jabatan' => 'required',
             'telepon' => 'required',
             'no_badge' => 'required',
             'gaji_pokok' => 'required|numeric',
+            'user_id' => 'required',
         ]);
 
         $karyawan = Karyawan::findOrFail($id);
         $karyawan->update($validatedData);
 
-        return redirect()->route('karyawan.index')->with('success', 'Data karyawan telah diperbarui');
+        return redirect()->route('admin.karyawan.index')->with('success', 'Data karyawan telah diperbarui');
     }
 
     public function destroy($id)
     {
         $karyawan = Karyawan::findOrFail($id);
+        $karyawan->presensi()->delete();
+        $karyawan->user()->delete();
         $karyawan->delete();
 
-        return redirect()->route('karyawan.index')->with('success', 'Data karyawan telah dihapus');
+        return redirect()->route('admin.karyawan.index')->with('success', 'Data karyawan telah dihapus');
     }
+
+    
+
+
+
+
 }
