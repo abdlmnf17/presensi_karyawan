@@ -84,10 +84,8 @@ body {
                         <i class="material-icons">badge</i> Karyawan
                     </a>
                     <div class="dropdown-menu" aria-labelledby="karyawanDropdown">
-                        <a class="dropdown-item" href="/karyawan">Data Karyawan</a>
-                        <a class="dropdown-item" href="#">Lembur Karyawan</a>
-                        <a class="dropdown-item" href="/presensi">Kehadiran</a>
-                        <a class="dropdown-item" href="/presensi">Lemburan</a>
+                        <a class="dropdown-item" href="/admin/karyawan">Data Karyawan</a>
+                        <a class="dropdown-item" href="admin/lembur">Lembur Karyawan</a>
                     </div>
                 </li>
 
@@ -96,9 +94,9 @@ body {
                         <i class="material-icons">event_available</i> Presensi
                     </a>
                     <div class="dropdown-menu" aria-labelledby="presensiDropdown">
-                        <a class="dropdown-item" href="/presensi">Submenu 1</a>
-                        <a class="dropdown-item" href="#">Submenu 2</a>
-                        <a class="dropdown-item" href="#">Submenu 3</a>
+                        <a class="dropdown-item" href="admin/presensi">Absen karyawan</a>
+                        {{-- <a class="dropdown-item" href="#">Submenu 2</a>
+                        <a class="dropdown-item" href="#">Submenu 3</a> --}}
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -107,7 +105,7 @@ body {
                     </a>
                     <div class="dropdown-menu" aria-labelledby="cutiDropdown">
                         <a class="dropdown-item" href="/cuti">Cuti Karyawan</a>
-                        <a class="dropdown-item" href="#">Cuti HRD</a>
+                        {{-- <a class="dropdown-item" href="#">Cuti HRD</a> --}}
                         {{-- <a class="dropdown-item" href="#">Submenu 3</a> --}}
                     </div>
                 </li>

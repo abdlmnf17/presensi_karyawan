@@ -14,8 +14,6 @@ class PresensiAdminController extends Controller
         return view('admin.presensis.index', compact('presensis'));
     }
 
-
-
     public function update(Request $request, $id)
     {
         $request->validate([

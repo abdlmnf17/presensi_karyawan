@@ -73,8 +73,6 @@ body {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
-
                     </ul>
             {{-- Centre Navbar --}}
 
@@ -85,7 +83,8 @@ body {
                         <i class="material-icons">badge</i> Karyawan
                     </a>
                     <div class="dropdown-menu" aria-labelledby="karyawanDropdown">
-                        <a class="dropdown-item" href="/profile">Data Karyawan</a>
+                        <a class="dropdown-item" href="/karyawan/profile">Data Karyawan</a>
+                        <a class="dropdown-item" href="/karyawan/lembur">Lemburan</a>
                     </div>
                 </li>
 
@@ -94,9 +93,9 @@ body {
                         <i class="material-icons">event_available</i> Presensi
                     </a>
                     <div class="dropdown-menu" aria-labelledby="presensiDropdown">
-                        <a class="dropdown-item" href="/presensi">Submenu 1</a>
-                        <a class="dropdown-item" href="#">Submenu 2</a>
-                        <a class="dropdown-item" href="#">Submenu 3</a>
+                        <a class="dropdown-item" href="/karyawan/presensi">Absen karyawan</a>
+                        {{-- <a class="dropdown-item" href="#">Submenu 2</a>
+                        <a class="dropdown-item" href="#">Submenu 3</a> --}}
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -104,7 +103,7 @@ body {
                         <i class="material-icons">calendar_view_month</i> Cuti
                     </a>
                     <div class="dropdown-menu" aria-labelledby="cutiDropdown">
-                        <a class="dropdown-item" href="/cuti">Cuti Karyawan</a>
+                        <a class="dropdown-item" href="/karyawan/cuti">Cuti Karyawan</a>
                     </div>
                 </li>
 
