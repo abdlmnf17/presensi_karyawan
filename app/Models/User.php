@@ -50,6 +50,8 @@ class User extends Authenticatable
         return $this->hasOne(Karyawan::class);
     }
 
+    
+
     public function hasRole($role)
 {
     return $this->role == $role; // Sesuaikan dengan logika peran Anda

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PresensiKaryawanController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PresensiAdminController;
+use App\Http\Controllers\CutiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,17 +23,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/karyawan/presensi', function () {
         return view('karyawan.dashboard');
     });
+
 Route::get('/karyawan/presensi/form', [PresensiKaryawanController::class, 'showForm'])->name('karyawan.presensi.form');
 Route::get('/karyawan/qrcode', [KaryawanController::class, 'generateQRCode'])->name('karyawan.qrcode');
 Route::post('/karyawan/presensi/store', [PresensiKaryawanController::class, 'store'])->name('karyawan.presensi.store');
-
 Route::put('/presensi/update', [PresensiKaryawanController::class, 'update'])->name('karyawan.presensi.update');
-
-
-
 Route::get('/karyawan/presensi/detail', [PresensiKaryawanController::class, 'detail'])->name('karyawan.presensi.detail');
 Route::get('/karyawan/presensi/riwayat', [PresensiKaryawanController::class, 'riwayat'])->name('karyawan.presensi.riwayat');
-
+Route::get('karyawan/cuti', [CutiController::class, 'create'])->name('cuti.create');
+Route::post('karyawan/cuti', [CutiController::class, 'store'])->name('cuti.store');
+Route::get('karyawan/cuti/riwayat', [CutiController::class, 'history'])->name('cuti.riwayat');
 
 });
 

@@ -1,12 +1,10 @@
 @extends('layouts.karyawanapp')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-
                 <div class="card-body">
                     @if (session('success'))
                        <div class="alert alert-success">
@@ -33,8 +31,6 @@
                         </div>
                         <br/>
                         <div class="d-flex justify-content-around flex-wrap">
-
-
                         <a href="/karyawan/presensi/form" class="card text-white bg-primary mb-3" style="max-width: 18rem; text-decoration: none; color: inherit;">
                             <div class="card-header">ABSEN KARYAWAN</div>
                             <div class="card-body">
@@ -99,18 +95,8 @@
                                 </div>
                             </div>
 
-
-
-
-
                         </div> --}}
                     </div>
-
-
-
-
-
-
                 </div>
             </div>
         </div>
