@@ -30,9 +30,10 @@ Route::post('/karyawan/presensi/store', [PresensiKaryawanController::class, 'sto
 Route::put('/presensi/update', [PresensiKaryawanController::class, 'update'])->name('karyawan.presensi.update');
 Route::get('/karyawan/presensi/detail', [PresensiKaryawanController::class, 'detail'])->name('karyawan.presensi.detail');
 Route::get('/karyawan/presensi/riwayat', [PresensiKaryawanController::class, 'riwayat'])->name('karyawan.presensi.riwayat');
-Route::get('karyawan/cuti', [CutiController::class, 'create'])->name('cuti.create');
-Route::post('karyawan/cuti', [CutiController::class, 'store'])->name('cuti.store');
-Route::get('karyawan/cuti/riwayat', [CutiController::class, 'history'])->name('cuti.riwayat');
+
+Route::get('/karyawan/cuti', [CutiController::class, 'index'])->name('cuti.index');
+Route::post('/karyawan/cuti', [CutiController::class, 'create'])->name('cuti.create');
+Route::get('/karyawan/cuti/riwayat', [CutiController::class, 'history'])->name('cuti.riwayat');
 
 });
 

@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cuti', function (Blueprint $table) {
+        Schema::create('cutis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
             $table->text('alasan_cuti');
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->string('status')->default('pending');
             $table->timestamps();
 
             // Menambahkan foreign key ke tabel users
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cuti');
+        Schema::dropIfExists('cutis');
     }
 };

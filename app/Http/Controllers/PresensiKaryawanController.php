@@ -13,6 +13,9 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PresensiKaryawanController extends Controller
 {
+
+    
+
     public function showForm()
     {
         $user = auth()->user();
@@ -133,7 +136,7 @@ class PresensiKaryawanController extends Controller
             $presensi->update([
                 'jam_pulang' => now()->format('H:i:s'),
                 'lokasi' => $request->lokasi,
-    
+
             ]);
 
             return redirect()->back()->with('success', 'Absensi pulang berhasil.');

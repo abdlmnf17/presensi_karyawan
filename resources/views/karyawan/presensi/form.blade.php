@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">Form Presensi Karyawan</div>
                     <div class="card-body">
@@ -26,7 +26,7 @@
                                 <select name="lokasi" id="lokasiSelect" required>
 
                                 </select><br/>
-                                <button class="btn btn-danger" type="button" onclick="getLocation()">Ambil Lokasi</button>
+                                <button class="btn btn-secondary text-white" type="button" onclick="getLocation()">Ambil Lokasi</button>
                                 <button class="btn btn-primary" type="submit">Absen Masuk</button>
                             </form>
 
@@ -43,7 +43,7 @@
                             @method('PUT')
                             <label for="lokasi">Lokasi:</label>
                             <select name="lokasi" id="lokasiSelect" required></select><br/>
-                            <button class="btn btn-danger" type="button" onclick="getLocation()">Ambil Lokasi</button>
+                            <button class="btn btn-secondary text-white" type="button" onclick="getLocation()">Ambil Lokasi</button>
                             <button class="btn btn-primary" type="submit">Absen Pulang</button>
                         </form>
 
@@ -130,7 +130,7 @@
         }
     </script>
 
-    
+
 
 
 

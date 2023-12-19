@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cuti extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'id', 'tanggal_mulai', 'tanggal_selesai', 'alasan_cuti', 'status', 'user_id'
+        'tanggal_mulai', 'tanggal_selesai', 'alasan_cuti', 'status', 'user_id'
     ];
 
     public function user()
-{
-    return $this->belongsTo(User::class);
-}
-
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -88,7 +88,7 @@
                                             <label for="no_id" class="form-label">No ID</label>
                                             <input type="number" class="form-control" id="no_id" name="no_id" required>
                                         </div>
-                                        
+
                                         <div class="mb-3">
                                             <label for="no_kk" class="form-label">NIK KK/KTP</label>
                                             <input type="number" class="form-control" id="no_kk" name="no_kk" required>

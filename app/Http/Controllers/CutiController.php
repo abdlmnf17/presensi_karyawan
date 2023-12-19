@@ -3,41 +3,48 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Karyawan;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Cuti;
+use App\Models\User;
+
 
 class CutiController extends Controller
 {
-      // Menampilkan formulir cuti untuk karyawan
-      public function create()
-      {
-          return view('karyawan.cuti.create');
-      }
+    // Menampilkan formulir cuti untuk karyawan
 
-      // Menyimpan data cuti yang diajukan oleh karyawan
-      public function store(Request $request)
-      {
-          $request->validate([
-              'tanggal_mulai' => 'required|date',
-              'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
-              'alasan' => 'required|string|max:255',
-          ]);
+    public function __construct()
+{
+    $this->middleware('auth');
+}
 
-          $leave = new Cuti;
-          $leave->user_id = Auth::id();
-          $leave->tanggal_mulai = $request->input('tanggal_mulai');
-          $leave->tanggal_selesai = $request->input('tanggal_selesai');
-          $leave->alasan = $request->input('alasan');
-          $leave->save();
+    public function index()
+    {
+        return view('karyawan.cuti.create');
+    }
 
-          return redirect()->route('cuti.create')->with('success', 'Cuti berhasil diajukan! tunggu status dari admin.');
-      }
+    // Menyimpan data cuti yang diajukan oleh karyawan
+    public function create(Request $request)
+    {
+        $request->validate([
+            'tanggal_mulai' => 'required|date',
+            'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
+            'alasan_cuti' => 'required|string|max:255',
+        ]);
 
-      // Menampilkan riwayat cuti karyawan
-      public function history()
-      {
-          $cutis = Cuti::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
-          return view('karyawan.cuti.riwayat', ['cutis' => $cutis]);
-      }
+        Cuti::create([
+            'user_id' => Auth::id(),
+            'tanggal_mulai' => $request->input('tanggal_mulai'),
+            'tanggal_selesai' => $request->input('tanggal_selesai'),
+            'alasan_cuti' => $request->input('alasan_cuti'),
+        ]);
+
+        return redirect()->route('cuti.index')->with('success', 'Cuti berhasil diajukan! Tunggu status dari admin.');
+    }
+
+    // Menampilkan riwayat cuti karyawan
+    public function history()
+    {
+        $cuti = Cuti::where('user_id', Auth::id())->orderByDesc('created_at')->get();
+        return view('karyawan.cuti.riwayat', ['cuti' => $cuti]);
+    }
 }

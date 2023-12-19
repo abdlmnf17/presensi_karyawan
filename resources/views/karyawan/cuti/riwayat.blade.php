@@ -8,11 +8,17 @@
                 <div class="card">
                     <div class="card-header">Riwayat Cuti</div>
 
+
                     <div class="card-body">
                         @if($cuti->isEmpty())
                             <p>Tidak ada riwayat cuti.</p>
                         @else
                             <table class="table">
+                                <div class="d-flex">
+                                    <a href="/karyawan/cuti" class="btn btn-primary" role="button">Ajukan Cuti</a>
+                                </div>
+                                <br/>
+
                                 <thead>
                                     <tr>
                                         <th>Tanggal Mulai</th>
@@ -22,12 +28,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($cutis as $cuti)
+                                    @foreach($cuti as $cutis)
                                         <tr>
-                                            <td>{{ $cuti->tanggal_mulai }}</td>
-                                            <td>{{ $cuti->tanggal_selesai }}</td>
-                                            <td>{{ $cuti->alasan }}</td>
-                                            <td>{{ ucfirst($cuti->status) }}</td>
+                                            <td>{{ $cutis->tanggal_mulai }}</td>
+                                            <td>{{ $cutis->tanggal_selesai }}</td>
+                                            <td>{{ $cutis->alasan_cuti }}</td>
+                                            <td>{{ ucfirst($cutis->status) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

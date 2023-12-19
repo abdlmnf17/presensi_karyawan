@@ -11,30 +11,44 @@
 
                     <div class="card-body">
                         @if(session('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+
+                        @elseif (session('error'))
+                        <div class="alert alert-danger">
+                         {{ session('error') }}
+                        </div>
                         @endif
 
-                        <form method="post" action="{{ route('cuti.store') }}">
+                        <form method="POST" action="{{ route('cuti.create') }}">
                             @csrf
+                            <div class="form-group">
+                            <label for="name">Nama:</label>
+                            <select class="form-select" required>
+                                <option value="{{ Auth::user()->name }}"> {{ Auth::user()->name }}</option>
+                            </select>
+                            </div>
 
                             <div class="form-group">
                                 <label for="tanggal_mulai">Tanggal Mulai:</label>
-                                <input type="date" class="form-control" name="tanggal_mulai" required>
+                                <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="tanggal_selesai">Tanggal Selesai:</label>
-                                <input type="date" class="form-control" name="tanggal_Selesai" required>
+                                <input type="date" class="form-control" id='tanggal_selesai' name="tanggal_selesai" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="alasan">Alasan:</label>
-                                <textarea class="form-control" name="reason" rows="3" required></textarea>
+                                <label for="alasan_cuti">Alasan:</label>
+                                <textarea class="form-control" id="alasan_cuti" name="alasan_cuti" rows="3" required></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Ajukan Cuti</button>
+
+
+                            <a href="/karyawan/cuti/riwayat" class="btn btn-outline-primary" role="button">Lihat Riwayat Cuti</a>
                         </form>
                     </div>
                 </div>
