@@ -28,22 +28,21 @@
                             <select class="form-select" required>
                                 <option value="{{ Auth::user()->name }}"> {{ Auth::user()->name }}</option>
                             </select>
-                            </div>
+                            </div><br/>
 
                             <div class="form-group">
                                 <label for="tanggal_mulai">Tanggal Mulai:</label>
                                 <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required>
-                            </div>
-
+                            </div><br/>
                             <div class="form-group">
                                 <label for="tanggal_selesai">Tanggal Selesai:</label>
                                 <input type="date" class="form-control" id='tanggal_selesai' name="tanggal_selesai" required>
-                            </div>
+                            </div><br/>
 
                             <div class="form-group">
                                 <label for="alasan_cuti">Alasan:</label>
                                 <textarea class="form-control" id="alasan_cuti" name="alasan_cuti" rows="3" required></textarea>
-                            </div>
+                            </div><br/>
 
                             <button type="submit" class="btn btn-primary">Ajukan Cuti</button>
 

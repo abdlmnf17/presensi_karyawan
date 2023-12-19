@@ -29,6 +29,8 @@ class CutiController extends Controller
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
             'alasan_cuti' => 'required|string|max:255',
+        ], [
+            'tanggal_selesai.after_or_equal' => 'Tanggal selesai harus setelah atau sama dengan tanggal mulai.',
         ]);
 
         Cuti::create([
@@ -40,6 +42,7 @@ class CutiController extends Controller
 
         return redirect()->route('cuti.index')->with('success', 'Cuti berhasil diajukan! Tunggu status dari admin.');
     }
+
 
     // Menampilkan riwayat cuti karyawan
     public function history()
