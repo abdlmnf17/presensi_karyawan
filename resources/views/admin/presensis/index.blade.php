@@ -83,17 +83,14 @@
                                                             <form method="POST" action="{{ route('presensi.admin.update', $presensi->id) }}">
                                                                 @csrf
                                                                 @method('PUT')
-                                                                <!-- Nama -->
 
-
-                                                                <!-- Jenis Kelamin -->
                                                                 <div class="mb-3">
                                                                     <label for="status" class="form-label">Status</label>
                                                                     <select class="form-select" id="status" name="status" required>
-                                                                        <option value="HADIR" {{ $presensi->status == 'HADIR' ? 'selected' : '' }}>HADIR</option>
-                                                                        <option value="ALPA" {{ $presensi->status == 'ALPA' ? 'selected' : '' }}>ALPA</option>
-                                                                        <option value="SAKIT" {{ $presensi->status == 'SAKIT' ? 'selected' : '' }}>SAKIT</option>
-                                                                        <option value="IZIN" {{ $presensi->status == 'IZIN' ? 'selected' : '' }}>IZIN</option>
+                                                                        <option value="HADIR">HADIR</option>
+                                                                        <option value="ALPA">ALPA</option>
+                                                                        <option value="SAKIT">SAKIT</option>
+                                                                        <option value="IZIN">IZIN</option>
                                                                     </select>
                                                                 </div>
 

@@ -13,9 +13,6 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PresensiKaryawanController extends Controller
 {
-
-    
-
     public function showForm()
     {
         $user = auth()->user();

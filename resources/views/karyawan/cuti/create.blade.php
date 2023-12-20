@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="card">
                     <div class="card-header">Ajukan Cuti</div>
 
@@ -21,7 +21,7 @@
                         </div>
                         @endif
 
-                        <form method="POST" action="{{ route('cuti.create') }}">
+                        <form method="POST" action="{{ route('karyawan.cuti.create') }}">
                             @csrf
                             <div class="form-group">
                             <label for="name">Nama:</label>

@@ -38,7 +38,7 @@
                                 <div class="card-header">Data Presensi </div>
                                 <div class="card-body">
                                     <i class="material-icons"><span class="material-symbols-outlined">fingerprint</span></i>
-                                    <p class="card-text">Kelola semua data Absensi Karyawan.</p>
+                                    <p class="card-text">Kelola semua data Absensi Karyawan. Hapus dan ubah status Absensi. </p>
                                 </div>
                             </div>
 

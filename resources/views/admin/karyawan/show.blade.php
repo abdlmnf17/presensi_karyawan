@@ -21,8 +21,10 @@
                             </div>
 
                             <div class="col-md-8">
-                                <h3>{{ $karyawan->nama }}</h3>
+                                <h3>{{ $karyawan->nama }} </h3>
                                 <p><strong>No Badge:</strong> {{ $karyawan->no_badge }}</p>
+                                <p><strong>No ID Karyawan:</strong> {{ $karyawan->no_id }}</p>
+                                <p><strong>No NIK KTP:</strong> {{ $karyawan->no_kk }}</p>
                                 <p><strong>Tanggal Lahir:</strong> {{ $karyawan->tanggal_lahir }}</p>
                                 <p><strong>Jenis Kelamin:</strong> {{ $karyawan->jenis_kelamin }}</p>
                                 <p><strong>Agama:</strong> {{ $karyawan->agama }}</p>

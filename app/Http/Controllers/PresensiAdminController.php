@@ -16,18 +16,24 @@ class PresensiAdminController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'status' => 'required',
         ]);
 
-        $presensi = Presensi::findOrFail($id);
-        $presensi->update([
-            'status' => $request->status,
+        $abs = Presensi::find($id);
+        $abs->status = $request->input('status');
+        $abs->save();
 
-        ]);
+
+
+        // $presensi->update([
+        //     'status' => $request->status,
+        // ]);
 
         return redirect()->route('presensi.admin.index')->with('success', 'Presensi berhasil diperbarui');
     }
+
 
     public function destroy($id)
     {

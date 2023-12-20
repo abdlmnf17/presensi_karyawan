@@ -40,7 +40,7 @@ class CutiController extends Controller
             'alasan_cuti' => $request->input('alasan_cuti'),
         ]);
 
-        return redirect()->route('cuti.index')->with('success', 'Cuti berhasil diajukan! Tunggu status dari admin.');
+        return redirect()->route('karyawan.cuti.index')->with('success', 'Cuti berhasil diajukan! Tunggu status dari admin.');
     }
 
 

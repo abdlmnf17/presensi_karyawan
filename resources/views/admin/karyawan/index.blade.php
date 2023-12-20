@@ -93,12 +93,6 @@
                                             <label for="no_kk" class="form-label">NIK KK/KTP</label>
                                             <input type="number" class="form-control" id="no_kk" name="no_kk" required>
                                         </div>
-
-
-
-
-
-
                                         <div class="mb-3">
                                             <label for="nama" class="form-label">Nama</label>
                                             <input type="text" class="form-control" id="nama" name="nama" required>
