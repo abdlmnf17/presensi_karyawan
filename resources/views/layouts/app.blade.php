@@ -87,7 +87,7 @@ body {
                     </a>
                     <div class="dropdown-menu" aria-labelledby="karyawanDropdown">
                         <a class="dropdown-item" href="/admin/karyawan">Data Karyawan</a>
-                        <a class="dropdown-item" href="admin/lembur">Lembur Karyawan</a>
+                        <a class="dropdown-item" href="/admin/lembur">Lembur Karyawan</a>
                     </div>
                 </li>
 
@@ -96,7 +96,7 @@ body {
                         <i class="material-icons">event_available</i> Presensi
                     </a>
                     <div class="dropdown-menu" aria-labelledby="presensiDropdown">
-                        <a class="dropdown-item" href="admin/presensi">Absen karyawan</a>
+                        <a class="dropdown-item" href="/admin/presensi">Absen karyawan</a>
                         {{-- <a class="dropdown-item" href="#">Submenu 2</a>
                         <a class="dropdown-item" href="#">Submenu 3</a> --}}
                     </div>

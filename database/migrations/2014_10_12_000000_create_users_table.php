@@ -17,8 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role')->default('karyawan');
+            $table->unsignedBigInteger('karyawan_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            // $table->index('karyawan_id');
+            // $table->foreign('karyawan_id')->references('id')->on('karyawans')->onDelete('cascade');
         });
     }
 
