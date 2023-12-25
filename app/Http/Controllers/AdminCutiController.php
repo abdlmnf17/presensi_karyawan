@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+ namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Cuti;
-use App\Models\User;
+ use Illuminate\Http\Request;
+ use App\Models\Cuti;
+ use App\Models\User;
 
 class AdminCutiController extends Controller
 {
@@ -30,6 +30,7 @@ class AdminCutiController extends Controller
 
         return redirect()->route('admin.cuti.index')->with('success', 'Data cuti berhasil diperbarui');
     }
+
 
     public function destroy(Cuti $cuti)
     {

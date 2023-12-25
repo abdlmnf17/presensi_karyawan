@@ -1,16 +1,18 @@
 @php
-function getStatusPresensi($status)
+// Di dalam file helper atau di dalam controller Anda
+
+function getStatusColorClass($status)
 {
-    // Ubah angka status menjadi teks
     switch ($status) {
-        case 0:
-            return 'MASUK';
-        case 1:
-            return 'SAKIT';
-        case 2:
-            return 'IZIN';
+        case 'pending':
+            return 'text-warning'; // Ganti dengan kelas CSS yang sesuai untuk warna kuning
+        case 'ditolak':
+            return 'text-danger'; // Ganti dengan kelas CSS yang sesuai untuk warna merah
+        case 'acc':
+            return 'text-success'; // Ganti dengan kelas CSS yang sesuai untuk warna hijau
         default:
-            return 'MASUK';
+            return '';
     }
 }
+
 @endphp

@@ -101,9 +101,20 @@ class KaryawanController extends Controller
         return redirect()->route('admin.karyawan.index')->with('success', 'Data karyawan telah dihapus');
     }
 
-    
 
+    public function profile()
+
+    {
+        // Mendapatkan objek User yang sedang login
+    $user = auth()->user();
+
+    // Mendapatkan profil karyawan terkait dengan user yang login
+    $karyawan = $user->karyawan;
+
+    return view('karyawan.profile', compact('karyawan', 'user'));
+    }
 
 
 
 }
+

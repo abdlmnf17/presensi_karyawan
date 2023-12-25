@@ -21,13 +21,17 @@
 
                             @if (!empty($konfigurasi) && $konfigurasi->status_presensi === 'buka')
                             <form id="presensiForm" action="{{ route('karyawan.presensi.store') }}" method="post">
-                                <p class="alert alert-info text-dark">Absen masuk telah dibuka. Silahkan absen dengan mengambil lokasi dahulu lalu klik Absen. Jika sudah, abaikan teks ini.</p><br/>
                                 @csrf
-                                <label for="lokasi">Lokasi:</label><br/><br/>
-                                <select name="lokasi" id="lokasiSelect" required>
-                                </select><br/><br/>
-                                <button class="btn btn-secondary text-white" type="button" onclick="getLocation()">Ambil Lokasi</button><br/><br/>
-                                <button class="btn btn-primary" type="submit">Absen Masuk</button>
+                                <p class="alert alert-info text-dark">Absen masuk telah dibuka. Silahkan absen dengan mengambil lokasi dahulu lalu klik Absen. Jika sudah, abaikan teks ini.</p><br/>
+
+                                @if (!$presensiHariIni->isNotEmpty() || ($presensiHariIni->isNotEmpty() && $presensiHariIni->first()->jam_pulang))
+                                    <label for="lokasi">Lokasi:</label><br/><br/>
+                                    <select name="lokasi" id="lokasiSelect" required></select><br/><br/>
+                                    <button class="btn btn-secondary text-white" type="button" onclick="getLocation()">Ambil Lokasi</button><br/><br/>
+                                    <button class="btn btn-primary" type="submit">Absen Masuk</button>
+                                @else
+                                    <p class="btn btn-danger">Anda sudah melakukan absen masuk hari ini.</p>
+                                @endif
                             </form>
 
 

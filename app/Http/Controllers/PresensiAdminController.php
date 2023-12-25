@@ -14,22 +14,15 @@ class PresensiAdminController extends Controller
         return view('admin.presensis.index', compact('presensis'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Presensi $presensi)
     {
 
-        $request->validate([
+        $validatedata = $request->validate([
             'status' => 'required',
         ]);
 
-        $abs = Presensi::find($id);
-        $abs->status = $request->input('status');
-        $abs->save();
+        $presensi->update($validatedata);
 
-
-
-        // $presensi->update([
-        //     'status' => $request->status,
-        // ]);
 
         return redirect()->route('presensi.admin.index')->with('success', 'Presensi berhasil diperbarui');
     }

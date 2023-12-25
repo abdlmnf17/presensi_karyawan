@@ -72,9 +72,10 @@
     <div class="welcome-container">
         <div class="welcome-card">
             <div class="text-center">
-                <img src="https://laravel.com/img/logomark.min.svg" alt="Logo" class="welcome-logo">
+                <img src="https://www.svgrepo.com/show/530452/mobile-app.svg" alt="Logo" class="welcome-logo">
             </div>
-            <p class="text-center">Selamat datang di Aplikasi Absensi Karyawan</p>
+            <p class="text-center">Selamat datang di Aplikasi Absensi Karyawan<br/>
+            PT. MAKMUR GUNA CIPTA</p>
             <div class="welcome-links">
                 @if (Route::has('login'))
                     @auth

@@ -1,14 +1,10 @@
-
-
 @extends('layouts.karyawanapp')
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7">
                 <div class="card">
-                    <div class="card-header">Ajukan Cuti</div>
-
+                    <div class="card-header">Form Ajukan Lembur</div>
                     <div class="card-body">
                         @if(session('success'))
                         <div class="alert alert-success" role="alert">
@@ -19,9 +15,9 @@
                          {{ session('error') }}
                         </div>
                         @endif
-
-                        <form method="POST" action="{{ route('karyawan.cuti.create') }}">
+                        <form method="POST" action="{{ route('karyawan.lembur.create') }}">
                             @csrf
+                            @method('POST')
                             <div class="form-group">
                             <label for="name">Nama:</label>
                             <select class="form-select" required>
@@ -29,23 +25,23 @@
                             </select>
                             </div><br/>
                             <div class="form-group">
-                                <label for="tanggal_mulai">Tanggal Mulai:</label>
-                                <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required>
+                                <label for="tanggal">Tanggal:</label>
+                                <input type="date" class="form-control" id="tanggal" name="tanggal" required>
                             </div><br/>
                             <div class="form-group">
-                                <label for="tanggal_selesai">Tanggal Selesai:</label>
-                                <input type="date" class="form-control" id='tanggal_selesai' name="tanggal_selesai" required>
+                                <label for="jam_mulai">Jam Mulai:</label>
+                                <input type="time" class="form-control" id='jam_mulai' name="jam_mulai" required>
                             </div><br/>
-
                             <div class="form-group">
-                                <label for="alasan_cuti">Alasan:</label>
-                                <textarea class="form-control" id="alasan_cuti" name="alasan_cuti" rows="3" required></textarea>
+                                <label for="jam_selesai">Jam Selesai:</label>
+                                <input type="time" class="form-control" id='jam_selesai' name="jam_selesai" required>
                             </div><br/>
-
-                            <button type="submit" class="btn btn-primary">Ajukan Cuti</button>
-
-
-                            <a href="/karyawan/cuti/riwayat" class="btn btn-outline-primary" role="button">Lihat Riwayat Cuti</a>
+                            <div class="form-group">
+                                <label for="alasan">Alasan:</label>
+                                <textarea class="form-control" id="alasan" name="alasan" rows="3" required></textarea>
+                            </div><br/>
+                            <button type="submit" class="btn btn-primary">Ajukan Lembur</button>
+                            <a href="/karyawan/lembur/riwayat" class="btn btn-outline-primary" role="button">Riwayat Lembur</a>
                         </form>
                     </div>
                 </div>

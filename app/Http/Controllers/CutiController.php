@@ -47,7 +47,9 @@ class CutiController extends Controller
     // Menampilkan riwayat cuti karyawan
     public function history()
     {
-        $cuti = Cuti::where('user_id', Auth::id())->orderByDesc('created_at')->get();
-        return view('karyawan.cuti.riwayat', ['cuti' => $cuti]);
+        // Mendapatkan riwayat cuti untuk user yang sedang login
+    $cuti = Cuti::where('user_id', Auth::id())->orderByDesc('created_at')->get();
+    
+    return view('karyawan.cuti.riwayat', compact('cuti'));
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Daftar Presensi</div>
 
@@ -19,22 +19,17 @@
                         <form action="{{ route('presensi.buka') }}" method="post">
                             @csrf
                             <button type="submit" name="status_presensi" value="terbuka">Buka Absensi Masuk</button>
-
                         </form>
                         <br/>
                         <form action="{{ route('presensi.buka_pulang') }}" method="post">
                             @csrf
                             <button type="submit" name="status_presensi" value="terbuka">Buka Absensi Pulang</button>
-
                         </form>
                         <br/>
-
                         <form action="{{ route('presensi.tutup') }}" method="post">
                             @csrf
-
                             <button type="submit" name="status_presensi" value="ditutup">Tutup Absensi</button>
                         </form>
-
                         <br/>
 
                         <table class="table">
@@ -61,7 +56,7 @@
                                         <td>{{ $presensi->jam_pulang }}</td>
                                         <td>{{ $presensi->status }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editKaryawanModal">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editKaryawanModal{{ $presensi->id }}">
                                                 Edit
                                             </button>
 
@@ -71,11 +66,11 @@
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin?')">Hapus</button>
                                             </form>
 
-                                            <div class="modal fade" id="editKaryawanModal" tabindex="-1" aria-labelledby="editKaryawanModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="editKaryawanModal{{ $presensi->id }}" tabindex="-1" aria-labelledby="editKaryawanModalLabel{{ $presensi->id }}" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="editKaryawanModalLabel">Edit Absensi</h5>
+                                                            <h5 class="modal-title" id="editKaryawanModalLabel{{ $presensi->id }}">Edit Absensi</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
@@ -94,7 +89,6 @@
                                                                     </select>
                                                                 </div>
 
-
                                                                 <!-- Tombol untuk menyimpan perubahan -->
                                                                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                                             </form>
@@ -106,11 +100,8 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-
                         </table>
                     </div>
-
-
                 </div>
             </div>
         </div>

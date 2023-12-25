@@ -23,17 +23,16 @@ class PresensiKaryawanController extends Controller
         if (auth()->user()->role === 'admin') {
             return view('admin.dashboard');
         } elseif (auth()->user()->role === 'karyawan') {
+            // Jika karyawan belum terdaftar, beri informasi kesalahan
+            if (!$karyawan) {
+                return redirect()->back()->with('error', 'Anda belum terdaftar sebagai karyawan.');
+            }
+
             return view('karyawan.presensi.form', compact('konfigurasi', 'presensiHariIni'));
         }
 
-        if (!$karyawan) {
-            return redirect()->back()->with('error', 'Data karyawan tidak ditemukan.');
-        }
-
-
-
-
-
+        // Informasi kesalahan umum jika tidak sesuai dengan role karyawan atau admin
+        return redirect()->back()->with('error', 'Akses ditolak.');
 
     }
 
@@ -46,7 +45,18 @@ class PresensiKaryawanController extends Controller
 
         // Pengecekan apakah user saat ini terkait dengan data karyawan
         if (!$karyawan) {
-            return redirect()->back()->with('error', 'Data karyawan tidak ditemukan.');
+            return redirect()->back()->with('error', 'Anda belum terdaftar sebagai karyawan.');
+        }
+
+        // Pengecekan apakah sudah melakukan absensi masuk pada hari ini
+        $presensiMasukHariIni = Presensi::where('karyawan_id', $karyawan->id)
+            ->whereDate('tanggal', now()->toDateString())
+            ->whereNull('jam_pulang')
+            ->first();
+
+        // Jika sudah melakukan absensi masuk, kembalikan pesan kesalahan
+        if ($presensiMasukHariIni) {
+            return redirect()->back()->with('error', 'Anda sudah melakukan absen masuk hari ini.');
         }
 
         // Validasi input
@@ -55,52 +65,25 @@ class PresensiKaryawanController extends Controller
             // Tambahkan validasi untuk input lainnya jika diperlukan
         ]);
 
-        // Lakukan validasi dan simpan data presensi karyawan
-
-        // $lokasiKantor = [
-        //     '-6.295111666666666, 10747422533333334',
-        //     '-6.2948106, 107.4731015',
-        //     '-6.2948042, 107.4731039',
-        //     '-6.209536, 106.82368',
-        //     '-6.209536, 106.82368',
-
-        // ];
-
-
-
-
-        // if ($request->lokasi != $lokasiKantor) {
-        //     return redirect()->back()->with('error', 'Anda tidak berada di lokasi kantor.');
-        // }
-
-        // Verifikasi apakah karyawan_id yang diambil dari user benar-benar milik user saat ini
-        // if ($karyawan->id !== $user->id) {
-        //     return redirect()->back()->with('error', 'Data karyawan tidak sesuai dengan user saat ini.');
-        // }
-        $statusdata = "HADIR";
-
         // Buat data presensi
         $presensiData = [
             'karyawan_id' => $karyawan->id,
             'tanggal' => now()->toDateString(),
             'lokasi' => $request->lokasi,
             'jam_masuk' => now()->format('H:i:s'),
-            'status' => $statusdata,
+            'status' => 'HADIR', // Anda dapat mengganti ini sesuai kebutuhan
         ];
 
-        // // Validasi presensiData sebelum disimpan
-        // $validation = Presensi::validate($presensiData);
-
-        // // Jika validasi gagal, kembalikan pesan kesalahan
-        // if ($validation->fails()) {
-        //     return redirect()->back()->with('error', $validation->errors()->first());
-        // }
-
-        // Simpan presensi jika validasi berhasil
-        Presensi::create($presensiData);
-
-        return redirect()->back()->with('success', 'Absensi masuk berhasil.');
+        // Simpan presensi jika user terkait dengan karyawan
+        if ($karyawan->id) {
+            Presensi::create($presensiData);
+            return redirect()->back()->with('success', 'Absensi masuk berhasil.');
+        } else {
+            return redirect()->back()->with('error', 'Data karyawan tidak ditemukan, Anda bukan karyawan. Silahkan hubungi Admin');
+        }
     }
+
+
 
     public function update(Request $request)
     {
@@ -111,35 +94,28 @@ class PresensiKaryawanController extends Controller
             return redirect()->back()->with('error', 'Data karyawan tidak ditemukan.');
         }
 
-        $request->validate([
-            'lokasi' => 'required',
+        // Pengecekan apakah karyawan sudah absen masuk hari ini dan jam pulang belum diisi
+        $presensiMasuk = Presensi::where('karyawan_id', $karyawan->id)
+            ->whereDate('tanggal', now()->toDateString())
+            ->whereNotNull('jam_masuk')
+            ->whereNull('jam_pulang')
+            ->first();
 
-        ]);
-
-        // $lokasiKantor = '-6.209536, 106.82368';
-
-
-        // if ($request->lokasi != $lokasiKantor) {
-        //     return redirect()->back()->with('error', 'Anda tidak berada di lokasi kantor atau anda belum terdaftar sebagai karyawan');
-        // }
-
-
-        $presensi = Presensi::where('karyawan_id', $karyawan->id)
-                            ->whereDate('tanggal', now()->toDateString())
-                            ->whereNull('jam_pulang')
-                            ->first();
-
-        if ($presensi) {
-            $presensi->update([
-                'jam_pulang' => now()->format('H:i:s'),
-                'lokasi' => $request->lokasi,
-
-            ]);
-
-            return redirect()->back()->with('success', 'Absensi pulang berhasil.');
+        if (!$presensiMasuk) {
+            return redirect()->back()->with('error', 'Anda belum melakukan absen masuk hari ini atau sudah absen pulang.');
         }
 
-        return redirect()->back()->with('error', 'Data presensi tidak ditemukan.');
+        $request->validate([
+            'lokasi' => 'required',
+        ]);
+
+        // Update data presensi pulang
+        $presensiMasuk->update([
+            'jam_pulang' => now()->format('H:i:s'),
+            'lokasi' => $request->lokasi,
+        ]);
+
+        return redirect()->back()->with('success', 'Absensi pulang berhasil.');
     }
 
 
@@ -173,6 +149,26 @@ class PresensiKaryawanController extends Controller
 
         return view('karyawan.presensi.riwayat', compact('riwayat'));
     }
+
+
+
+
+function getStatusColorClass($status)
+{
+    switch ($status) {
+        case 'pending':
+            return 'bg-warning text-white'; // Ganti dengan kelas CSS yang sesuai untuk warna kuning
+        case 'ditolak':
+            return 'bg-danger text-white'; // Ganti dengan kelas CSS yang sesuai untuk warna merah
+        case 'disetujui':
+            return 'bg-success text-white'; // Ganti dengan kelas CSS yang sesuai untuk warna merah
+        case 'ACC':
+            return 'bg-success text-white'; // Ganti dengan kelas CSS yang sesuai untuk warna hijau
+        default:
+            return '';
+    }
+}
+
 
 
 

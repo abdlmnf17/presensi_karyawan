@@ -17,8 +17,8 @@ class UsersTableSeeder extends Seeder
     {
         // Tambahkan user dengan peran Admin
         User::create([
-            'name' => 'Nama Admin',
-            'email' => 'admin@example.com',
+            'name' => 'Naf',
+            'email' => 'admin@presensi.com',
             'password' => Hash::make('password'), // Gunakan Hash dari Illuminate\Support\Facades
             'role' => 'admin', // Sesuaikan dengan kolom yang menandakan peran pada model User
         ]);

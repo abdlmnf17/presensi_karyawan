@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Karyawan extends Model
 {
     protected $fillable = [
@@ -34,8 +33,11 @@ class Karyawan extends Model
        });
    }
 
+   public function lemburs()
+{
+    return $this->hasMany(Lembur::class);
 }
 
 
-
+}
 
