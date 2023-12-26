@@ -9,10 +9,8 @@ use App\Models\Lembur;
 use App\Models\Cuti;
 use App\Models\Karyawan;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
-// use Barryvdh\DomPDF\Facade\Pdf;
 
 class LaporanController extends Controller
 {
