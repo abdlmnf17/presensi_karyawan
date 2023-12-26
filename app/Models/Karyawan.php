@@ -33,10 +33,17 @@ class Karyawan extends Model
        });
    }
 
-   public function lemburs()
+   public function lembur()
 {
     return $this->hasMany(Lembur::class);
 }
+
+
+public function cuti()
+{
+    return $this->hasMany(Cuti::class, 'user_id');
+}
+
 
 
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\PresensiAdminController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\AdminCutiController;
 use App\Http\Controllers\LemburController;
+use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,6 +73,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::delete('/admin/lembur/destroy/{lemburs}', [LemburController::class, 'destroy'])->name('admin.lembur.destroy');
     Route::get('/admin/lembur/edit/{id}', [LemburController::class, 'editAdmin'])->name('admin.lembur.edit');
+    Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('admin.laporan.index');
+    Route::post('/admin/laporan/generate-pdf', [LaporanController::class, 'generatePDF'])->name('admin.laporan.pdf');
 
 
     // Route::resource('/admin/karyawan/lembur', LemburController::class)->except(['index'])->names('admin.lembur');
