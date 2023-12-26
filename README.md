@@ -51,14 +51,14 @@
 
 ## Fitur-Fitur
 
--- Absen Karyawan (Masuk dan Pulang)
--- Data Karyawan
--- Kelola Cuti Karyawan
--- Kelola Lembur Karyawan
--- Rekap Absen, Cuti dan Lembur
--- dll...
+- Absen Karyawan (Masuk dan Pulang)
+- Data Karyawan
+- Kelola Cuti Karyawan
+- Kelola Lembur Karyawan
+- Rekap Absen, Cuti dan Lembur
+- dll...
 
-
+<br/>
 ## Projek ini dibuat dengan Laravel 10
 
 <br/>
