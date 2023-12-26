@@ -1,3 +1,42 @@
+
+## Aplikasi Absensi Barcode, Cuti, Lembur dan Laporan Karyawan
+
+## Instalasi Tools (Localhost)
+
+- VSCODE
+- XAMPP 
+- Node JS
+- Composer
+
+## Cara Pasang
+
+1. Git Clone projek lewat terminal / command prompt / git bash. Ketikan: git clone https://github.com/abdlmnf17/presensi_karyawan.git
+2. Pindahkan folder (presensi_karyawan) hasil clone ke folder Xampp/htdocs/disini
+3. Buka Vscode, open folder dan pilih presensi_karyawan yang tadi sudah di clone
+4. Buka terminal di Vscode, ketikan composer install , lalu tunggu sampai selesai
+5. Setelah itu ketikan npm install, lalu tunggu sampai selesai
+6. setelah itu jalankan npmnya dengan mengetikan npm run dev
+7. Setelah berhasil jalan, buka / add terminal baru di VScode
+8. Lalu ketikan php artisan key:generete , setelah itu buka file env.example, dan rename menjadi .env
+9. Masuk ke dalam .env dan ubah bagian DB_DATABASE=, menjadi nama db yang akan diisi, contoh DB_DATABASE=absen_karyawan
+10. Setelah itu, buka phpmyadmin , dan buat database baru berdasarkan nama DB yang ada di .env, yaitu absen_karyawan (misalnya)
+11. Lalu balik lagi ke Vscode, dan add terminal baru, lalu ketikan php artisan migrate, dan tunggu migration sampai selesai
+12. Setelah itu instalasi user admin dengan seeder, buka folder database/seeder/UsersTableSeeder.php
+13. Silahkan ubah isi keterangan admin, seperti nama, email dan password 
+14. Lalu ketik di terminal vscode, ketikan: php artisan db:seed --class=UsersTableSeeder   
+15. Lalu tunggu sampai selesai. Setelah itu ketikan   php artisan config:cache
+16. Setelah selesai, ketikan php artisan serve
+17. Selesai, buka link localhost:8000 dan login sebagai admin
+
+
+
+## Projek ini dibuat dengan Laravel 10
+
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
