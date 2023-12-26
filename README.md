@@ -3,7 +3,7 @@
 ## Instalasi Tools (Localhost)
 
 - VSCODE
-- XAMPP
+- XAMPP (PHP 8)
 - Node JS
 - Composer
 
@@ -49,9 +49,20 @@
 
 17. Selesai! Buka link [localhost:8000](http://localhost:8000) dan login sebagai admin.
 
+## Fitur-Fitur
+
+-- Absen Karyawan (Masuk dan Pulang)
+-- Data Karyawan
+-- Kelola Cuti Karyawan
+-- Kelola Lembur Karyawan
+-- Rekap Absen, Cuti dan Lembur
+-- dll...
+
+
 ## Projek ini dibuat dengan Laravel 10
 
-
+<br/>
+<br/>
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
