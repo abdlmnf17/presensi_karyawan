@@ -1,6 +1,3 @@
-Dengan senang hati, berikut adalah README.md yang telah diperbaharui:
-
-```markdown
 # Aplikasi Absensi Barcode, Cuti, Lembur dan Laporan Karyawan
 
 ## Instalasi Tools (Localhost)
