@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cuti;
 use App\Models\User;
+use App\Models\Karyawan;
 
 
 class CutiController extends Controller
@@ -34,7 +35,7 @@ class CutiController extends Controller
         ]);
 
         Cuti::create([
-            'user_id' => Auth::id(),
+            'karyawan_id' => auth()->user()->karyawan->id,
             'tanggal_mulai' => $request->input('tanggal_mulai'),
             'tanggal_selesai' => $request->input('tanggal_selesai'),
             'alasan_cuti' => $request->input('alasan_cuti'),
@@ -48,8 +49,14 @@ class CutiController extends Controller
     public function history()
     {
         // Mendapatkan riwayat cuti untuk user yang sedang login
-    $cuti = Cuti::where('user_id', Auth::id())->orderByDesc('created_at')->get();
-    
-    return view('karyawan.cuti.riwayat', compact('cuti'));
+    $cuti = Cuti::where('karyawan_id', Auth::user()->karyawan->id)->get();
+    // $cuti = Cuti::where('karyawan_id', Auth::user()->karyawan->id)->get();
+
+
+    return view('karyawan.cuti.riwayat', [
+        'cuti' => $cuti,
+        'presensiController' => new PresensiKaryawanController(), // Instance PresensiKaryawanController
+    ]);
+
     }
 }

@@ -9,15 +9,15 @@ class CreateCutisTable extends Migration
     {
         Schema::create('cutis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('karyawan_id');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
             $table->text('alasan_cuti');
             $table->string('status')->default('pending');
             $table->timestamps();
 
-            $table->index('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->index('karyawan_id');
+            $table->foreign('karyawan_id')->references('id')->on('karyawans')->onDelete('cascade');
         });
     }
 

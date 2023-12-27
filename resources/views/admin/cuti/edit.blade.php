@@ -25,7 +25,7 @@
 
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama Karyawan</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="{{ optional($cuti->user)->name }}" readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{ optional($cuti->karyawan)->nama }}" readonly>
                             </div>
 
                             <div class="mb-3">

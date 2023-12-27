@@ -28,7 +28,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach($cuti as $cutis)
-                                        @if($cutis->user_id == Auth::id())
+                                        @if($cutis->karyawan->user_id == Auth::id())
                                             <tr>
                                                 <td>{{ $cutis->tanggal_mulai }}</td>
                                                 <td>{{ $cutis->tanggal_selesai }}</td>

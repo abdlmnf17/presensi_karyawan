@@ -26,7 +26,7 @@
 
 7. Setelah berhasil dijalankan, buka / tambahkan terminal baru di VScode.
 
-8. Ketik `php artisan key:generate`, setelah itu buka file env.example, dan ubah namanya menjadi `.env`.
+8. Setelah itu buka file env.example, dan ubah namanya menjadi `.env`, lalu ketik di terminal `php artisan key:generate`,
 
 9. Masuk ke dalam .env dan ubah bagian `DB_DATABASE=`, menjadi nama database yang akan digunakan, contohnya `DB_DATABASE=absen_karyawan`.
 

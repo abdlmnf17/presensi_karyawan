@@ -36,7 +36,7 @@
                         @foreach($cutiList as $cuti)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $cuti->user->name }}</td>
+                                <td>{{ $cuti->karyawan->nama }}</td>
                                 <td>{{ $cuti->tanggal_mulai }}</td>
                                 <td>{{ $cuti->tanggal_selesai }}</td>
                                 <td>{{ $cuti->alasan_cuti }}</td>

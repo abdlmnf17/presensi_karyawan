@@ -38,11 +38,13 @@ class Karyawan extends Model
     return $this->hasMany(Lembur::class);
 }
 
+// Karyawan.php
 
 public function cuti()
 {
-    return $this->hasMany(Cuti::class, 'user_id');
+    return $this->hasMany(Cuti::class);
 }
+
 
 
 

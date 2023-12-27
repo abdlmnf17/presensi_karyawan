@@ -50,7 +50,12 @@ class User extends Authenticatable
         return $this->hasOne(Karyawan::class);
     }
 
-    
+    public function cuti()
+    {
+        return $this->hasOne(Cuti::class);
+    }
+
+
 
     public function hasRole($role)
 {

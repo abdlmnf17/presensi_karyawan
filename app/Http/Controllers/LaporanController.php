@@ -40,6 +40,8 @@ class LaporanController extends Controller
             },
         ])->findOrFail($karyawanId);
 
+    
+
         $data = compact('karyawan', 'startDate', 'endDate');
 
         $pdf = PDF::loadView('admin.laporan.pdf', $data);
