@@ -24,81 +24,54 @@
 </head>
 <body>
     <center>
-<hr>
-
-    <h1>Rekap Laporan Karyawan <br/>
-    PT. MAKMUR GUNA CIPTA</h1>
-    <p>Periode: {{ $startDate }} - {{ $endDate }}</p>
-<br/>
-    <div>
-        </center>
-
         <hr>
+        <h1>Rekap Laporan Karyawan <br/>
+        PT. MAKMUR GUNA CIPTA</h1>
+        <p>Periode: {{ $startDate }} - {{ $endDate }}</p>
         <br/>
-
+    </center>
+    <hr>
+    <br/>
+    <div>
         <b>Nama Karyawan:</b> {{ $karyawan->nama }} <br/>
         <b>No Badge:</b> {{ $karyawan->no_badge }} <br/>
         <b>Jabatan:</b> {{ $karyawan->jabatan}}
-<br/><br/>
-        <h4>Presensi</h4>
+        <br/><br/>
+        <h4>Laporan</h4>
         <table>
             <thead>
                 <tr>
                     <th>Tanggal</th>
-                    <th>Status</th>
+                    <th>Absensi</th>
+                    <th>Cuti</th>
+                    <th>Lembur</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($karyawan->presensi as $presensi)
                     <tr>
                         <td>{{ $presensi->tanggal }}</td>
-                        <td>{{ $presensi->status }}</td>
+                        <td>Jam Masuk: {{ $presensi->jam_masuk }}<br/>Jam Keluar: {{ $presensi->jam_pulang }}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
 
-        <h4>Lembur</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tanggal</th>
-                    <th>Jam Mulai</th>
-                    <th>Jam Selesai</th>
-                    <th>Keterangan</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
+                @foreach ($karyawan->cuti as $cuti)
+                    <tr>
+                        <td>{{ $cuti->tanggal_mulai }} - {{ $cuti->tanggal_selesai }}</td>
+                        <td></td>
+                        <td>{{ $cuti->alasan_cuti }}</td>
+                        <td></td>
+                    </tr>
+                @endforeach
+
                 @foreach ($karyawan->lembur as $lembur)
                     <tr>
                         <td>{{ $lembur->tanggal }}</td>
-                        <td>{{ $lembur->jam_mulai }}</td>
-                        <td>{{ $lembur->jam_selesai }}</td>
-                        <td>{{ $lembur->alasan }}</td>
-                        <td>{{ $lembur->status }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <h4>Cuti</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tanggal Mulai</th>
-                    <th>Tanggal Selesai</th>
-                    <th>Alasan</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($karyawan->cuti as $cuti)
-                    <tr>
-                        <td>{{ $cuti->tanggal_mulai }}</td>
-                        <td>{{ $cuti->tanggal_selesai }}</td>
-                        <td>{{ $cuti->alasan_cuti }}</td>
-                        <td>{{ $cuti->status }}</td>
+                        <td></td>
+                        <td></td>
+                        <td>Jam Mulai: {{ $lembur->jam_mulai }}<br/>Jam Selesai: {{ $lembur->jam_selesai }}<br/>Keterangan: {{ $lembur->alasan }}</td>
                     </tr>
                 @endforeach
             </tbody>
