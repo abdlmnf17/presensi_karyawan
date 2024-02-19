@@ -40,7 +40,7 @@ class LaporanController extends Controller
             },
         ])->findOrFail($karyawanId);
 
-    
+
 
         $data = compact('karyawan', 'startDate', 'endDate');
 
@@ -49,6 +49,33 @@ class LaporanController extends Controller
 return $pdf->download($fileName);
 
     }
+
+
+    public function generatePDFBersama(Request $request)
+{
+    $startDate = $request->input('start_date');
+    $endDate = $request->input('end_date');
+
+    $karyawan = Karyawan::with([
+        'presensi' => function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('tanggal', [$startDate, $endDate]);
+        },
+        'lembur' => function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('tanggal', [$startDate, $endDate]);
+        },
+        'cuti' => function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('tanggal_mulai', [$startDate, $endDate])
+                ->orWhereBetween('tanggal_selesai', [$startDate, $endDate]);
+        },
+    ])->get();
+
+    $data = compact('karyawan', 'startDate', 'endDate');
+
+    $pdf = PDF::loadView('admin.laporan.pdf_semua', $data);
+    $fileName = 'laporan_' . $startDate . '_to_' . $endDate . '.pdf';
+    return $pdf->download($fileName);
+}
+
 
 
     }

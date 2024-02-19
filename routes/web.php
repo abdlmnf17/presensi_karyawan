@@ -76,6 +76,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('admin.laporan.index');
     Route::post('/admin/laporan/generate-pdf', [LaporanController::class, 'generatePDF'])->name('admin.laporan.pdf');
 
+    Route::post('/admin/laporan/generate-pdf-bersama', [LaporanController::class, 'generatePDFBersama'])->name('admin.laporan.pdf_semua');
+
 
     // Route::resource('/admin/karyawan/lembur', LemburController::class)->except(['index'])->names('admin.lembur');
 
