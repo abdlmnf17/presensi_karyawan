@@ -61,7 +61,7 @@
                     <tr>
                         <td>{{ $cuti->tanggal_mulai }} - {{ $cuti->tanggal_selesai }}</td>
                         <td></td>
-                        <td>{{ $cuti->alasan_cuti }}</td>
+                        <td>{{ $cuti->alasan_cuti }} <b> ({{ $cuti->status }}) </b></td>
                         <td></td>
                     </tr>
                 @endforeach
@@ -71,7 +71,8 @@
                         <td>{{ $lembur->tanggal }}</td>
                         <td></td>
                         <td></td>
-                        <td>Jam Mulai: {{ $lembur->jam_mulai }}<br/>Jam Selesai: {{ $lembur->jam_selesai }}<br/>Keterangan: {{ $lembur->alasan }}</td>
+                        <td>Jam Mulai: {{ $lembur->jam_mulai }}<br/>Jam Selesai: {{ $lembur->jam_selesai }}<br/>Keterangan: {{ $lembur->alasan }} <b>
+                            ({{ $lembur->status }})</b></td>
                     </tr>
                 @endforeach
             </tbody>
